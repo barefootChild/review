@@ -2,6 +2,7 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const ExtractTextPlugin = require("mini-css-extract-plugin")
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const VueLoaderPlugin = require('vue-loader/lib/plugin')
 const webpack = require('webpack')
 
 module.exports = {
@@ -10,6 +11,10 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.vue$/,
+        use: ['vue-loader']
+      },
       {
         test: /\.css|scss$/,
         use: [
@@ -51,7 +56,7 @@ module.exports = {
       "node_modules",
       path.resolve(__dirname, 'src')
     ],
-    extensions: ['.js', '.json', '.jsx', '.css'],
+    extensions: ['.vue', '.js', '.json', '.jsx', '.css'],
     alias: {
       _sources: path.resolve(__dirname, './src/assets')
     }
@@ -59,6 +64,7 @@ module.exports = {
   context: __dirname,
   target: 'web',
   plugins: [
+    new VueLoaderPlugin(),
     new CleanWebpackPlugin(),
     new webpack.ProvidePlugin({
       _join: ['lodash', 'join']
