@@ -32,3 +32,28 @@ Promise.prototype.race = function(promises) {
     promises.reduce((a, b) => a.catch(() => b)).catch(() => reject(Error("ALL FAILED!")))
   })
 }
+
+
+// 带并发限制的fetch请求函数
+function sendRequest(urls, max, callback) {
+  const currentCount = 0
+  const total = urls.length
+
+  const handler = () => {
+    if (urls.length) {
+      let url = urls.shift()
+      fetch(url).then(() => {
+        currentCount++
+        handler()
+      })
+    }
+
+    if (currentCount >= total) {
+      callback()
+    }
+  }
+
+  for (let i = 0; i < max; i++) {
+    handler()
+  }
+}
