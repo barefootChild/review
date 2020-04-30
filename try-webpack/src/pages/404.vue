@@ -1,4 +1,4 @@
-<template functional>
+<template>
   <div>
     <div class="wrap">
       <div style="margin-top:-20px;">

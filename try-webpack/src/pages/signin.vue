@@ -97,7 +97,7 @@ export default {
         localStorage.menu = JSON.stringify(menu);
         const _routes = generateRoutes(menu);
         router.addRoutes(_routes);
-        this.$router.push("/404");
+        this.$router.push("/hello");
       });
     },
     openMsg() {

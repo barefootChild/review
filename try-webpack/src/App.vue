@@ -4,10 +4,15 @@
   </div>
 </template>
 <script>
+import router from "./router/index";
+import generateRoutes from "./router/parse";
 export default {
-  data() {
-    return {
-      msg: 'hello vue'
+  name: "app",
+  created() {
+    if (localStorage.menu) {
+      const menu = JSON.parse(localStorage.menu);
+      const _routes = generateRoutes(menu);
+      router.addRoutes(_routes);
     }
   }
 }
