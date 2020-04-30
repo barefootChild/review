@@ -21,18 +21,7 @@ module.exports = {
           ExtractTextPlugin.loader,
           'css-loader', 'postcss-loader', 'sass-loader'
         ]
-        // use: ExtractTextPlugin.extract({
-        //   fallback: 'style-loader',
-        //   use: ['css-loader', 'postcss-loader']
-        // })
       },
-      // {
-      //   test: /\.scss$/,
-      //   use: ExtractTextPlugin.extract({
-      //     fallback: 'style-loader',
-      //     use: ['css-loader', 'postcss-loader', 'sass-loader']
-      //   })
-      // },
       {
         test: /\.(png|svg|jpg|gif)$/,
         use: ['file-loader']
@@ -58,7 +47,8 @@ module.exports = {
     ],
     extensions: ['.vue', '.js', '.json', '.jsx', '.css'],
     alias: {
-      _sources: path.resolve(__dirname, './src/assets')
+      _sources: path.resolve(__dirname, './src/assets'),
+      vue$: 'vue/dist/vue.js'
     }
   },
   context: __dirname,
