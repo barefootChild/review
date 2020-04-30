@@ -56,7 +56,7 @@ export default {
         name: [
           {
             required: true,
-            message: this.$t("m.login.name_tip"),
+            message: this.$t("message.login.name_tip"),
             trigger: "blur"
             // validator: checkone
           }
@@ -64,7 +64,7 @@ export default {
         password: [
           {
             required: true,
-            message: this.$t("m.login.password_tip"),
+            message: this.$t("message.login.password_tip"),
             trigger: "blur"
           }
         ]
