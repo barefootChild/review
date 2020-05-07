@@ -1,35 +1,25 @@
-// import _ from 'lodash'
-import './style/index.scss'
-import Icon from '_sources/icon.png'
-import Data from '_sources/data.xml'
+import Vue from 'vue'
 
-import { cube } from './js/math'
+import router from './router'
+import i18n from './lang'
+import http from './http'
+import App from './App'
+import VueParticles from 'vue-particles'
+import ElementUi from 'element-ui'
+import './mock'
+import 'element-ui/lib/theme-chalk/index.css'
 
-function component() {
-  let ele = document.createElement('div')
-  ele.innerHTML = _join(['Hello', 'webpack'], ' ')
-  ele.classList.add('hello')
+Vue.use(ElementUi)
+Vue.use(VueParticles)
 
-  let btn = document.createElement('button')
-  btn.innerHTML = 'click me!'
-  btn.addEventListener('click', function(e) {
-    return import('./js/print').then(module => {
-      let print = module.default
-      print()
-    })
-  })
-  ele.appendChild(btn)
+Vue.prototype.$http = http
 
-  let pre = document.createElement('pre')
-  pre.innerHTML = ['Hi webpack!', '5 cubed is equel to ' + cube(5)].join('\n\n')
-  ele.appendChild(pre)
-
-  console.log(Data)
-
-  return ele
-}
-
-if (process.env.NONDE_ENV !== 'production') {
-  console.log('I am in development')
-}
-document.body.appendChild(component())
+new Vue({
+  el: "#main",
+  i18n,
+  router,
+  template: '<App />',
+  components: {
+    App
+  }
+})
