@@ -32,3 +32,4 @@ Promise.prototype.race = function(promises) {
     promises.reduce((a, b) => a.catch(() => b)).catch(() => reject(Error("ALL FAILED!")))
   })
 }
+

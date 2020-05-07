@@ -555,7 +555,7 @@ function reOrderArray(array) {
         start++;
       }
       while (array[end] % 2 === 0) {
-        end++;
+        end--;
       }
       if (start < end) {
         let temp = array[start];
@@ -736,6 +736,7 @@ function minStack() {
   }
 }
 
+// 两个栈实现一个队列
 function quene() {
   var stack1 = [], stack2 = []
 
@@ -744,11 +745,56 @@ function quene() {
   }
 
   function pop() {
-    if (stack.length === 0) {
+    if (stack2.length === 0) {
       while(stack1.length > 0) {
         stack2.push(stack1.pop())
       }
     }
     return stack2.pop() || null
+  }
+}
+
+// 栈的压入弹出序列
+function IsPopOrder(pushV, popV) {
+  if (!pushV || !popV || pushV.length == 0 || popV.length == 0) {
+    return;
+  }
+  var stack = [];
+  var idx = 0;
+  for (var i = 0; i < pushV.length; i++) {
+    stack.push(pushV[i]);
+    while (stack.length && stack[stack.length - 1] == popV[idx]) {
+      stack.pop();
+      idx++;
+    }
+  }
+  return stack.length == 0;
+}
+
+// 两个队列实现一个栈
+const queue1 = []
+const queue2 = []
+
+function push(x) {
+  if (queue1.length === 0) {
+    queue1.push(x)
+
+    while (queue2.length) {
+      queue1.push(queue2.shift())
+    }
+  } else if (queue2.length === 0) {
+    queue2.push(x)
+
+    while (queue1.length) {
+      queue2.push(queue1.shift())
+    }
+  }
+};
+
+function pop() {
+  if (queue1.length !== 0) {
+    return queue1.shift()
+  } else {
+    return queue2.shift()
   }
 }

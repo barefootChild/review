@@ -218,7 +218,7 @@ function flat2(arr) {
 
 function flat3(arr, deep) {
   return arr.reduce((target, current) => {
-    return Array.isArray(current) && deep > 1 ? target.concat(flat3(current)) : target.concat(current)
+    return Array.isArray(current) && deep > 1 ? target.concat(flat3(current, deep--)) : target.concat(current)
   }, [])
 }
 
